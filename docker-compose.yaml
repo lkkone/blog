@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   halo:
     image: halohub/halo:2.20
@@ -9,7 +7,7 @@ services:
       halodb:
         condition: service_healthy
     networks:
-      halo_network:
+      lkk_network:
     volumes:
       - ./halo2:/root/.halo2
     ports:
@@ -36,7 +34,7 @@ services:
     restart: on-failure:3
     container_name: halo-db
     networks:
-      halo_network:
+      lkk_network:
     volumes:
       - ./db:/var/lib/postgresql/data
     healthcheck:
