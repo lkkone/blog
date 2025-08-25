@@ -4,6 +4,7 @@ services:
   halo:
     image: halohub/halo:2.20
     restart: on-failure:3
+    container_name: halo-blog
     depends_on:
       halodb:
         condition: service_healthy
@@ -12,7 +13,7 @@ services:
     volumes:
       - ./halo2:/root/.halo2
     ports:
-      - "8091:8090"
+      - "8090:8090"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
       interval: 30s
@@ -33,6 +34,7 @@ services:
   halodb:
     image: postgres:15.4
     restart: on-failure:3
+    container_name: halo-db
     networks:
       halo_network:
     volumes:
@@ -49,4 +51,4 @@ services:
       - PGUSER=halo
 
 networks:
-  halo_network:
+  lkk_network:
